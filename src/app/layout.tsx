@@ -1,7 +1,10 @@
 import authOptions from "@/app/api/auth/[...nextauth]/authOptions";
-import  Navbar from "@/app/components/Navbar";
 import  AuthSessionProvider from "@/app/components/AuthSessionProvider";
 import { getServerSession } from "next-auth";
+
+import  Navbar from "@/app/components/Navbar";
+import  Footer from "@/app/components/Footer";
+import  Login from "@/app/components/Login";
 
 import './globals.css'
 import type { Metadata } from 'next'
@@ -20,10 +23,20 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const session = await getServerSession(authOptions);
+  
+
   return (
-    <html lang="en">
+    <html lang="en" className="bg-black text-white">
       <AuthSessionProvider session={session}>
-        <body className={inter.className}><Navbar/>{children}</body>
+        <body className={inter.className}>
+        {!session ? <Login /> :
+          <>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </>
+        }
+        </body>
       </AuthSessionProvider>
     </html>
   )
