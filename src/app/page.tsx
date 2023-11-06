@@ -35,7 +35,7 @@ function SpotifySearch({ sdk }: { sdk: SpotifyApi }) {
     {tableRows = Array.isArray(results) ? results.map((playlist: SimplifiedPlaylist) => {
       return (
         <a key={playlist.id} href= {"/playlist/" + playlist.id}>
-        <div className="max-w-sm bg-foreground border-gray-200 rounded-lg shadow hover:bg-accentBackground">
+        <div className="max-w-sm bg-foreground border-gray-200 rounded-lg shadow hover:bg-accentBackground transition ease-in-out duration-100 delay-75">
             <div className="p-3 overflow-hidden" >
                 <img className="rounded-lg object-cover w-[150px] h-[150px] md:w-[200px] md:h-[200px]" src={playlist.images[0].url} alt="" />
             </div>
